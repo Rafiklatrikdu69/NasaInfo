@@ -1,1 +1,21 @@
-<p>image works!</p>
+
+
+<div class="main">
+    <h1> Title : {{this.apod.getTitre()}}</h1>
+    <h3>Date : {{this.apod.getDate()}}</h3>
+
+    
+    <div [@toggleBox]="isOpen ? 'open' : 'closed'" class="content">
+        <div *ngIf="!isOpen">
+            <p [ngClass]="{'description': true}">{{this.apod.getDescription()}}</p>
+            <p id="copy">{{this.apod.getCopyright()}}</p>
+            
+        </div>
+        <div *ngIf="isOpen">
+            <p class="img"><img src={{this.apod.getUrl()}} alt=""></p>
+        </div>
+    </div>
+    <div>
+        <mat-slide-toggle (click)="toggle()">Read Description !</mat-slide-toggle>
+    </div>
+</div>
