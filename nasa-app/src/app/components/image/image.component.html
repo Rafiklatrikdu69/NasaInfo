@@ -1,21 +1,23 @@
 
 
-<div class="main">
-    <h1> Title : {{this.apod.getTitre()}}</h1>
-    <h3>Date : {{this.apod.getDate()}}</h3>
+<div class="main" *ngFor="let element of this.tabApi">
+    <div class="liste-img">
+    <h1> Title : {{element.getTitre()}}</h1>
+    <h3>Date : {{element.getDate()}}</h3>
 
-    
+    <input type="date">
     <div [@toggleBox]="isOpen ? 'open' : 'closed'" class="content">
         <div *ngIf="!isOpen">
-            <p [ngClass]="{'description': true}">{{this.apod.getDescription()}}</p>
-            <p id="copy">{{this.apod.getCopyright()}}</p>
+            <p [ngClass]="{'description': true}">{{element.getDescription()}}</p>
+            <p id="copy">{{element.getCopyright()}}</p>
             
         </div>
         <div *ngIf="isOpen">
-            <p class="img"><img src={{this.apod.getUrl()}} alt=""></p>
+            <p class="img"><img src={{element.getUrl()}} alt=""></p>
         </div>
     </div>
     <div>
         <mat-slide-toggle (click)="toggle()">Read Description !</mat-slide-toggle>
     </div>
+</div>
 </div>

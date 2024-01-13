@@ -39,5 +39,10 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 html{
+  // background-image: linear-gradient( 111.4deg,  rgba(7,7,9,1) 6.5%, rgba(47, 41, 211, 0.79) 93.2% );
+  // background-repeat: no-repeat;
+  //background-image: linear-gradient( 111.4deg,  rgba(7,7,9,1) 6.5%, rgba(47, 41, 211, 0.79) 93.2% );
   background-image: linear-gradient( 111.4deg,  rgba(7,7,9,1) 6.5%, rgba(47, 41, 211, 0.79) 93.2% );
+  background-size: 100%;
+  overflow-y: auto;
 }

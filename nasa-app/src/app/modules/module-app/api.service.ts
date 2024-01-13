@@ -12,7 +12,7 @@ export class ApiService {
     
    }
 
-   public getInfo(){
-      return this.http.get(this.url,{responseType:"text"})
+   public getInfo(date:string){
+      return this.http.get(this.url+"&start_date="+date,{responseType:"text"})
    }
 }

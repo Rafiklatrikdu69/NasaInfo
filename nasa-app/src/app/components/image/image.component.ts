@@ -24,16 +24,19 @@ import { animate, style, transition, trigger } from '@angular/animations';
 })
 export class ImageComponent {
   @Input() apod !: apod
+  @Input() tabApi : apod[] = [];
   constructor(private api :ApiService){}
   ngOnInit(): void {
-    this.api.getInfo().subscribe(data=>{
+    this.api.getInfo("2024-01-12").subscribe(data=>{
+      console.log(data)
       let dataParse = JSON.parse(data)
-      this.apod = new apod(dataParse.copyright,dataParse.date,dataParse.explanation,dataParse.hdurl,dataParse.title,dataParse.url)
-      console.log(this.apod.getTitre());
-    })
-
-    
-    
+      for(let i = 0;i<dataParse.length;i++){
+        this.apod = new apod(dataParse[i].copyright,dataParse[i].date,dataParse[i].explanation,dataParse[i].hdurl,dataParse[i].title,dataParse[i].url)
+        console.log(this.apod.getTitre());
+        this.tabApi.push(this.apod)
+      }
+       
+    })    
   }
 
 
