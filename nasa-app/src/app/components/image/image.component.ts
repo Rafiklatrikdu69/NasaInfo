@@ -25,6 +25,8 @@ import { animate, style, transition, trigger } from '@angular/animations';
 export class ImageComponent {
   @Input() apod !: apod
   @Input() tabApi : apod[] = [];
+  toggleStates: { id: number; isOpen: boolean }[] = [];
+
   constructor(private api :ApiService){}
   ngOnInit(): void {
     this.api.getInfo("2024-01-12").subscribe(data=>{
@@ -36,13 +38,33 @@ export class ImageComponent {
         this.tabApi.push(this.apod)
       }
        
-    })    
+    })   
+    let toggle = document.querySelectorAll('.toggle');
+  
+    for(let i = 1;i<toggle.length;i++){
+      toggle[i].setAttribute("id",i+"")
+     
+      
+    } 
+    for(let i = 0;i<toggle.length;i++){
+      toggle[i].addEventListener('click' , ()=>{
+        //console.log(toggle[i].id)
+        this.toggleStates.push({id:i,isOpen:false})
+        console.log(this.toggleStates[i].id);
+        this.toggle(i);
+      })
+
+    } 
+  
   }
 
 
   isOpen!:any ;
  
-    toggle() {
-      this.isOpen = !this.isOpen;
+    toggle(id:number) {
+   
+      this.toggleStates[id].isOpen = !this.toggleStates[id].isOpen;
+      console.log("tourne : "+this.toggleStates[id].isOpen)
+ 
     }
 }

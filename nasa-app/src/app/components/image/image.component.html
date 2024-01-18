@@ -1,23 +1,19 @@
-
-
-<div class="main" *ngFor="let element of this.tabApi">
+<div class="main" *ngFor="let element of this.tabApi; let i = index">
     <div class="liste-img">
-    <h1> Title : {{element.getTitre()}}</h1>
-    <h3>Date : {{element.getDate()}}</h3>
-
-    <input type="date">
-    <div [@toggleBox]="isOpen ? 'open' : 'closed'" class="content">
-        <div *ngIf="!isOpen">
-            <p [ngClass]="{'description': true}">{{element.getDescription()}}</p>
-            <p id="copy">{{element.getCopyright()}}</p>
-            
+        <h1> Title : {{element.getTitre()}}</h1>
+        <h3>Date : {{element.getDate()}} nombre {{i}}</h3>
+        <input type="date">
+        <div [@toggleBox]="toggleStates[i]?.isOpen ? 'open' : 'closed'" class="content">
+            <div *ngIf="!toggleStates[i]?.isOpen">
+                <p [ngClass]="{'description': true}">{{element.getDescription()}}</p>
+                <p id="copy">{{element.getCopyright()}}</p>
+            </div>
+            <div *ngIf="toggleStates[i]?.isOpen">
+                <p class="img"><img src={{element.getUrl()}} alt=""></p>
+            </div>
         </div>
-        <div *ngIf="isOpen">
-            <p class="img"><img src={{element.getUrl()}} alt=""></p>
+        <div>
+            <mat-slide-toggle class="toggle">Read Description !</mat-slide-toggle>
         </div>
     </div>
-    <div>
-        <mat-slide-toggle (click)="toggle()">Read Description !</mat-slide-toggle>
-    </div>
-</div>
 </div>
