@@ -39,5 +39,10 @@ h1,h3,#copy{
     flex-direction: column;
     color: black;
     align-items: center;
-    gap:40px;
+    gap:100px;
+}
+.liste-img{
+    display: flex;
+    flex-direction: column;
+    gap:50px;
 }

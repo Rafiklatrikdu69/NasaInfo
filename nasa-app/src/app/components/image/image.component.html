@@ -1,8 +1,17 @@
-<input type="date" id="dt" (change)="handler($event)">
+
+<mat-form-field class="example-full-width">
+    <mat-label>Choose a date</mat-label>
+    <input matInput [matDatepicker]="picker" id="dt" (dateChange)="handler($event)">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker" >
+      <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+    </mat-datepicker-toggle>
+    <mat-datepicker #picker ></mat-datepicker>
+  </mat-form-field>
 <div class="main" *ngFor="let element of this.tabApi; let i = index">
     <div class="liste-img">
         <h1> Title : {{element.getTitre()}}</h1>
-        <h3>Date : {{element.getDate()}} nombre {{i}}</h3>
+        <h3>Date : {{element.getDate()}}</h3>
   
         <div [@toggleBox]="toggleStates[i]?.isOpen ? 'open' : 'closed'" class="content">
             <div *ngIf="!toggleStates[i]?.isOpen">
@@ -14,7 +23,7 @@
             </div>
         </div>
         <div>
-            <mat-slide-toggle class="toggle" (click)="toggle(i)">Read Description !</mat-slide-toggle>
+            <mat-slide-toggle class="toggle" (click)="toggle(i)" style="color:white">Read Description !</mat-slide-toggle>
         </div>
     </div>
 </div>
